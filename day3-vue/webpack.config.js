@@ -14,18 +14,18 @@ const config = {
   },
   module: {
     rules: [
-       {
-         test: /\.vue$/,
-         use: 'vue-loader'
-       },
-       {
-         test: /\.(sa|sc|c)ss$/i,
-         use: [
-           'style-loader',
-           'css-loader',
-           'sass-loader'
-         ]
-       }
+      {
+        test: /\.vue$/,
+        use: 'vue-loader'
+      },
+      {
+        test: /\.(sa|sc|c)ss$/i,
+        use: [
+          'style-loader', // <style>  </style>
+          'css-loader',  // CommonJs模块
+          'sass-loader' // scss - css
+        ]
+      }
     ]
   },
   plugins: [
@@ -36,9 +36,9 @@ const config = {
     port: 8000, // 端口
     host: '0.0.0.0',
     open: true,
-    // 服务器内部的所有其他中间件之前执行自定义中间件的能力。
-    before: function(app, server) {
-      app.get('/movie/list', function(req, res) {
+    before: function (app, server) {
+      // console.log(server.options, 'server')
+      app.get('/movie/list', function (req, res) {
         res.json({
           list: movieData
         })
