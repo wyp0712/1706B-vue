@@ -1,0 +1,25 @@
+.box {
+  width: 200px;
+  height: 200px;
+  background: url(../img/a.png);
+}
+
+.swiper-container {
+  width: 100%;
+  height: 200px;
+
+  .swiper-wrapper {
+    width: 100%;
+    height: 100%;
+
+    .swiper-slide {
+      width: 100%;
+      height: 100%;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
