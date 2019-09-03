@@ -1,42 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    .box {
+      animation: name 1s infinite;
+    }
+
+    .active {
+      background: red;
+    }
+  </style>
 </head>
+
 <body>
 
+
   <div id="app">
-    <span v-if="seen" v-bind:title="msg">  {{ msg }}</span>
-    <p>{{ message }}</p>
-    <button v-on:click="reverseMessage">反转消息</button>
+
+    <!-- {{ message }}
+    <hr>
+    <span v-if="isMsg" :title="message">{{ message }}</span>
+    <span v-else> {{test}} </span>
+
+    <hr>
+    <span v-show="isMsg">{{msgTitle}}</span>
+    <hr>
+
+ <div @click="bindEventTab(index)" v-for="(item, index) in tabList">{{ item }}</div> -->
+
+    <!--  -->
+    <hr>
+
+    <!-- <input type="text" v-model="message"> -->
+    <br>
+    <!-- <button @click="reverseEvent">点击翻转</button> -->
+
+    <hr>
+
+    <span v-html="list"> </span>
+
+    <hr> -->
+
+    <div @click="bindEventTab" v-bind:class="[{ active: isActive }, errorClass]">hello wrod</div>
+
+
+
   </div>
-  
+
+
 
   <script src="./node_modules/vue/dist/vue.js"></script>
   <script>
+    /*
+     指令： v-bind可以省略
+     v-on:click  ---> @click
+     v-bind:title  ---> :title
+     v-if v-else
+     v-show 
+     // 循环指令
+     v-for
+    
+    */
 
     new Vue({
       el: '#app',
       data() {
         return {
-          msg: "test",
-          seen: false,
-          message: 'Hello Vue.js!'
+          activeClass: 'active',
+          errorClass: 'text-danger',
+          message: "hello vue!",
+          test: "hello world!",
+          isMsg: true,
+          msgTitle: "this is a vue-demo",
+          tabList: ['中国国庆节', '中秋节', '元旦节'],
+          list: '<h1>hello 中国世界杯输球</h1>',
+          isActive: 'true'
         }
       },
-      methods: {
-        reverseMessage() {
+      // 计算属性。
+      computed: {
+        reverseEvent() {
+          console.log(this.message.split('').reverse())
           this.message = this.message.split('').reverse().join('')
         }
       },
+      // 方法
+      methods: {
+        bindEventTab(index) {
+          this.isActive = !this.isActive
+        },
+      },
     })
-    
 
-  
-  
+
+
+
+
+
+
   </script>
 </body>
+
 </html>
