@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .btns {
+      display: inline-block;
+      width: 200px;
+      text-align: center;
+      line-height: 45px;
+      margin-left: 10px;
+      height: 45px;
+      border: 1px solid black;
+    }
+
+    .active {
+      background: red;
+    }
+
+    .text-danger {
+      background: red;
+    }
+
+    .activeClass {
+      background: red;
+    }
+
+    .errorClass {
+      background: black;
+    }
+
+    .box {
+      width: 200px;
+      height: 40px;
+
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <div id="app">
+    <span class="btns" @click="bindEventTab(index)" :class="{ active: item.state }" v-for="(item,index) in tabList">
+      {{ item.title }} </span>
+
+    <!-- <div v-bind:style="[baseStyles, overridingStyles]">hello world</div> -->
+
+    <!-- <div class="box" @click="bindEventTab()" v-bind:class="[isActive ? activeClass : '']">test</div> -->
+
+  </div>
+
+  <script src="./vue.js"></script>
+  <script>
+
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          activeClass: 'activeClass',
+          errorClass: "errorClass",
+          isActive: true,
+          hasError: false,
+          // isActive: 0,
+          tabList: [
+            {
+              title: "中秋",
+              state: true
+            },
+            {
+              title: "国庆",
+              state: false
+            },
+            {
+              title: "国庆",
+              state: false
+            }
+          ]
+        }
+      },
+      methods: {
+        bindEventTab(index) {
+          this.tabList.forEach((item, ind) => {
+            index == ind ? item.state = true : item.state = false
+          })
+          // this.isActive = !this.isActive
+        }
+      },
+    })
+
+
+
+
+  </script>
+
+</body>
+
+</html>

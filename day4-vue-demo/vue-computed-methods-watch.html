@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>计算属性 方法 侦听</title>
+</head>
+<body>
+
+  <div id="app">
+      <h2>名字: {{ fullName }}   {{age}}</h2> 
+  </div>
+
+  <script src="./vue.js"></script>
+  <script>
+     const vm = new Vue({
+       el: "#app",
+       data() {
+         return {
+           firstName: "devin",
+           lastName: "wang",
+           age: 28,
+           fullName: 'devin wang'
+         }
+       },
+       // 
+      //  computed: {
+      //    fullName: function() {
+      //      console.log('更新了一次')
+      //     return this.firstName + " " + this.lastName
+      //    }
+      //  },
+      //  watch: {
+      //   firstName:function() {
+      //     console.log('1')
+      //     this.fullName = this.firstName + ' ' + this.lastName
+      //   },
+      //   lastName:function() {
+      //     console.log('2')
+      //     this.fullName = this.firstName + ' ' + this.lastName
+      //   }
+      //  },
+
+      methods: {
+        
+      },
+     })
+
+
+  
+  
+  </script>
+</body>
+</html>

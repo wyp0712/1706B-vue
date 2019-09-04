@@ -1,12 +1,14 @@
 
-# vue：   MVVM 模式：  M - V - VM
+# vue：   
+<!-- MVVM 模式：  M - V - VM -->
 <!-- model  View  view-model -->
+
 # v-bind:title = 'msg'
 # v-if v-else
 # v-show
-v-on:click  ---> @click
-v-model  input
-v-html
+# v-on:click  ---> @click
+# v-model  input
+# v-html
 
 
 

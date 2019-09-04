@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .box {
+      height: 60px;
+      line-height: 60px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .active {
+      background: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="app">
+    <input type="text" v-model="inputValue"> <button @click="handleSubmitClick" class="btns">提交</button>
+    <ul>
+      <li @click="handleLiClick(key)" class="box" :class="{active: item.stateBg}" v-for="(item, key) in list">{{ item.name }}</li>
+    </ul>
+  </div>
+
+  <script src="./vue.js"></script>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data() {
+        return {
+          list: [
+            {
+              name: "国庆",
+              stateBg: false
+            },
+            {
+              name: "中秋",
+              stateBg: false
+            },
+            {
+              name: "普天同庆",
+              stateBg: false
+            }
+          ],
+          arr: [],
+          inputValue: ''
+        }
+      },
+      methods: {
+        handleSubmitClick() {
+          this.list.push({
+            name: this.inputValue,
+            stateBg: false
+          })
+          this.inputValue = ''
+        },
+        handleLiClick(key) {
+          console.log(key, 'key')
+          this.list.map((item, index) => {
+            item.stateBg = key === index ? true : false
+          })
+        }
+      },
+
+    })
+
+
+
+  </script>
+
+
+</body>
+
+</html>
