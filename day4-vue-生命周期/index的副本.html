@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../libs/vue.js"></script>
+    <style>
+        .success {
+            color: darkgreen
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <table border="1">
+            <tr>
+                <td>编号</td>
+                <td>姓名</td>
+                <td>所剩数量</td>
+                <td>是否过期</td>
+                <td>生产地</td>
+            </tr>
+            <tr v-for="comm in commodity">
+                <td>
+                    <div v-if="comm.state == 1">
+                        <input type="text" v-model="comm.id">
+                    </div>
+                    <div v-else>
+                        {{comm.id}}
+                    </div>
+                </td>
+                <td>
+                    <div v-if="comm.state == 1">
+                        <input type="text" v-model="comm.name">
+                    </div>
+                    <div v-else>
+                        {{comm.name}}
+                    </div>
+                </td>
+                <td>
+                    <div v-if="comm.state == 1">
+                        <input type="text" v-model="comm.count">
+                    </div>
+                    <div v-else>
+                        {{comm.count}}
+                    </div>
+                </td>
+                <td>
+                    <div v-if="comm.state == 1">
+                        <input type="radio" v-model="comm.datastate" value="0">未过期
+                        <input type="radio" v-model="comm.datastate" value="1">已过期
+                    </div>
+                    <div v-else>
+                        <div v-bind:class="{success:comm.datastate == 0,error:comm.datastate == 1}">
+                            {{ getsex(comm.datastate) }}</div>
+                    </div>
+                </td>
+                <td>
+                    <div v-if="comm.state == 1">
+                        <select v-model="comm.city">
+                            <option value="0">北京</option>
+                            <option value="1">河北</option>
+                        </select>
+                    </div>
+                    <div v-else>
+                        {{ getcity(comm.city) }}
+                    </div>
+                </td>
+                <td>
+                    <button v-if="comm.state == 0" @click="changeState(comm)">修改</button>
+                    <button v-if="comm.state == 1" @click="canelState(comm)">保存</button>
+                    <button v-if="comm.state == 1" @click="canelState(comm)">取消</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            computed: {
+
+            },
+            data: {
+                commodity: [
+                    { id: 1, name: "西瓜", count: 10, datastate: 0, city: 0, state: 0 },
+                    { id: 2, name: "鸭梨", count: 30, datastate: 0, city: 1, state: 0 },
+                    { id: 3, name: "猕猴桃", count: 50, datastate: 0, city: 1, state: 0 },
+                    { id: 4, name: "桃子", count: 60, datastate: 0, city: 0, state: 0 },
+                ]
+            },
+            methods: {
+                getsex(val) {
+                    if (val == 0) {
+                        return "未过期"
+                    } else if (val == 1) {
+                        return "已过期"
+                    }
+                },
+                getcity(city) {
+                    if (city == 0) {
+                        return "北京"
+                    } else if (city == 1) {
+                        return "河北"
+                    }
+                },
+                changeState(comm) {
+                    this.commodity.map(el => {
+                        if (comm.id == el.id) {
+                            el.state = 1;
+                        }
+                    })
+                },
+                canelState(comm) {
+                    this.commodity.map(el => {
+                        if (comm.id == el.id) {
+                            el.state = 0;
+                        }
+                    })
+                },
+                saveState(comm) {
+                    this.commodity.map(el => {
+                        if (comm.id == el.id) {
+                            el.state = 0;
+                            el.id = comm.id;
+                            el.name = comm.name;
+                            el.sex = comm.sex;
+                            el.age = comm.age;
+                        }
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -5,22 +5,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>vue style样式设置 {} [] style</title>
+  <title>vue设置样式</title>
   <style>
-    *{
+    * {
       user-select: none;
     }
-    .box {
-      display: inline-block;
-      width: 200px;
-      height: 100px;
-      text-align: center;
-      line-height: 100px;
-      font-size: 20px;
-      background: #eee;
-      cursor: pointer;
-    }
 
+    .box {
+      width: 300px;
+      height: 100px;
+      font-size: 50px;
+      text-align: center;
+      cursor: pointer;
+      background: #eee;
+      line-height: 100px;
+    }
     .active {
       background: red;
     }
@@ -30,32 +29,43 @@
 <body>
 
   <div id="app">
-    <!-- <span class="box" @click="handleSpanBg" :class="{active: isActive, hasError: isError}">hello world</span> -->
-    <!-- <div class="box" @click="handleDivClick" :class="[isActive]">hello world</div> -->
-    <div class="box" @click="handleDivClick" :style = "styleObj">hello world</div>
+
+    <!-- <div class="box" @click="handledivClick" :class="{ active: isAactive, hasError: isError }">hello world</div> -->
+    <!-- <div class="box" @click="handledivClick" :class="[active]">hello world</div> -->
+
+
+    <div class="box" @click="handledivClick" :style="styleObj">hello world</div>
+
   </div>
 
   <script src="./vue.js"></script>
   <script>
+    /*  
+
+  
+      :class:  对象形式 {}   数组形式 []
+      :style = ""
+    */
+
+    // box.classList.toggle
 
     const vm = new Vue({
-      el: "#app",
+      el: '#app',
       data() {
         return {
-          // isActive: true,
-          // isError: true
-          isActive: 'active',
+          isAactive: true,
+          isError: true,
+          active: 'active',
           styleObj: {
             color: 'red'
           }
         }
       },
       methods: {
-        handleDivClick() {
-          // this.isActive = this.isActive === 'active' ? '' : 'active'
-           
-           this.styleObj.color = this.styleObj.color === 'red' ? '' : 'red'
-           
+        handledivClick() {
+          // this.isAactive = !this.isAactive 
+          // this.active = this.active === 'active'? '' : 'active'
+          this.styleObj.color = this.styleObj.color === 'red' ? '' : 'red'
         }
       },
     })
@@ -63,7 +73,9 @@
 
 
 
+
   </script>
+
 </body>
 
 </html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+   
+   .box {
+     width: 200px;
+     height: 50px;
+     text-align: center;
+     line-height: 50px;
+     font-size: 25px;
+     color: #000;
+     background: #eee;
+     display: inline-block;
+     margin: 10px;
+   }
+
+   .active {
+     background: red;
+   }
+  
+  </style>
+</head>
+<body>
+   
+   <div id="app">
+      
+    
+    <div class="box" @click="bindEvent(item, index)" :class="{active: item.state}" v-for="(item,index) in list"> {{ item.name }} </div>
+
+
+   </div>
+
+
+  <script src="../libs/vue.js"></script>
+  <script>
+    /*
+
+    beforeCreate
+    created
+    beforeMount
+    mounted
+    beforeUpdate
+    updated
+    beforeDestroy
+    destroyed
+    
+    */
+   
+    
+    const vm = new Vue({
+      el: '#app',
+      data() {
+        return {
+           list: [
+             {
+               name: "item1",
+               state: true
+             },
+             {
+               name: "item2",
+               state: false
+             },
+             {
+               name: "item1",
+               state: false
+             },
+             {
+               name: "item2",
+               state: false
+             }
+           ],
+           index: 0
+        }
+      },
+      // 计算属性  缓存功能
+      computed: {
+
+      },
+      watch: {
+        
+      },
+      // 方法
+      methods: {
+        bindEvent(item, index) {
+          console.log(this.index, 'this')
+          this.list[this.index].state = false;
+          item.state = true
+           // 更新index
+          this.index = index;
+        }
+      },
+      // beforeCreate() {
+        // 初始化前
+      //   console.log(this.$el, this.index, 'beforeCreate') 
+      // },
+      created() {
+        // 初始化开始  dom还没有生成  ajax请求可以放在这块
+        console.log(this.$el, this.index, 'created') 
+      },
+      // beforeMount() {
+      //   // domg 挂载前
+      //   console.log(this.$el, this.index, 'beforeMount') 
+      // },
+      mounted() {
+        // dom挂载完成状态  可以访问所有的dom  可以操作dom 做一些vue数据实现不了的效果
+        console.log(this.$el, this.index, 'beforeMount') 
+      },
+      // beforeDestroy() {
+        
+      // },
+      destroyed() {
+        
+      },
+
+
+    })
+       
+
+  
+  
+  </script>
+
+</body>
+</html>

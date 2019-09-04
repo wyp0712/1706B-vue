@@ -9,43 +9,119 @@
 <body>
 
   <div id="app">
-      <h2>名字: {{ fullName }}   {{age}}</h2> 
+
+    <!-- 全名： {{ firstName + " " + lastName }} -->
+    <!-- 全名： {{ fullName }}  {{ age }} --> 
+    <!-- {{ addNum }} -->
+
+    <div @click="handledivClick" > 全名：{{ fullName }} </div>
+    <!-- <div>  全名：{{ fullName }} </div> -->
+
   </div>
 
   <script src="./vue.js"></script>
   <script>
-     const vm = new Vue({
-       el: "#app",
-       data() {
-         return {
-           firstName: "devin",
-           lastName: "wang",
-           age: 28,
-           fullName: 'devin wang'
-         }
-       },
-       // 
-      //  computed: {
-      //    fullName: function() {
-      //      console.log('更新了一次')
-      //     return this.firstName + " " + this.lastName
-      //    }
-      //  },
-      //  watch: {
-      //   firstName:function() {
-      //     console.log('1')
-      //     this.fullName = this.firstName + ' ' + this.lastName
-      //   },
-      //   lastName:function() {
-      //     console.log('2')
-      //     this.fullName = this.firstName + ' ' + this.lastName
-      //   }
-      //  },
 
-      methods: {
-        
+    const vm = new Vue({
+      el: "#app",
+      data() {
+        return {
+          firstName: "devin",
+          lastName: "wang",
+          age: 28,
+          fullName: 'devin wang'
+        }
       },
-     })
+
+      // 计算属性  缓存属性
+      // computed: {
+      //   fullName: function() {
+      //     console.log('123')
+      //     return this.firstName + " " + this.lastName
+      //   },
+      //   addNum: function() {
+      //     return 1 + 2
+      //   }
+      // },
+      // 方法：
+      // methods: {
+      //   handledivClick() {
+      //     this.fullName = '123'
+      //   }
+      // },
+      
+      // 侦听器 有缓存功能
+      // watch: {
+      //   firstName: function() {
+      //     console.log('1')
+      //      this.fullName = this.firstName + " " + this.lastName
+      //   },
+      //   lastName: function() {
+      //     console.log('2')
+      //      this.fullName = this.firstName + " " + this.lastName
+      //   }
+      // },
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //  const vm = new Vue({
+    //    el: "#app",
+    //    data() {
+    //      return {
+    //        firstName: "devin",
+    //        lastName: "wang",
+    //        age: 28,
+    //        fullName: 'devin wang'
+    //      }
+    //    },
+    //    // 
+    //   //  computed: {
+    //   //    fullName: function() {
+    //   //      console.log('更新了一次')
+    //   //     return this.firstName + " " + this.lastName
+    //   //    }
+    //   //  },
+    //   //  watch: {
+    //   //   firstName:function() {
+    //   //     console.log('1')
+    //   //     this.fullName = this.firstName + ' ' + this.lastName
+    //   //   },
+    //   //   lastName:function() {
+    //   //     console.log('2')
+    //   //     this.fullName = this.firstName + ' ' + this.lastName
+    //   //   }
+    //   //  },
+
+    //   methods: {
+        
+    //   },
+    //  })
 
 
   

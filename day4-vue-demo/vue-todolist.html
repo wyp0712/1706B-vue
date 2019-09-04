@@ -5,70 +5,88 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>todolist</title>
   <style>
-    .box {
-      height: 60px;
-      line-height: 60px;
-      text-align: left;
-      cursor: pointer;
-    }
-    .active {
-      background: red;
-    }
+  
+   .box {
+     line-height: 40px;
+     text-align: left;
+     text-indent: 2em;
+     color:#000;
+     background: #eee;
+     margin: 5px;
+   }
+  .active {
+    background: red;
+  }
+
+  ul li{
+    width: 100px;
+    height: 35px;
+    background: #eee;
+    margin: 5px 10px;
+    float: left;
+  }
   </style>
 </head>
 
 <body>
 
+
   <div id="app">
-    <input type="text" v-model="inputValue"> <button @click="handleSubmitClick" class="btns">提交</button>
+
+    <input type="text" v-model="inputValue"> <button @click="handleButtonClick" class="btn">提交todolist</button>
+
     <ul>
-      <li @click="handleLiClick(key)" class="box" :class="{active: item.stateBg}" v-for="(item, key) in list">{{ item.name }}</li>
+      <li @click="handleLiClick(key)" class="box" :class="{active: item.state}" v-for="(item, key) in list"> {{ item.name }} </li>
     </ul>
+
   </div>
+
 
   <script src="./vue.js"></script>
   <script>
+
     const vm = new Vue({
-      el: "#app",
+      el: '#app',
       data() {
         return {
+          // list: ["中秋节", "国庆节", "普天同庆"],
           list: [
             {
-              name: "国庆",
-              stateBg: false
+              name: "中秋节",
+              state: false
             },
             {
-              name: "中秋",
-              stateBg: false
+              name: "国庆节",
+              state: false
             },
             {
               name: "普天同庆",
-              stateBg: false
+              state: false
             }
           ],
-          arr: [],
           inputValue: ''
         }
       },
       methods: {
-        handleSubmitClick() {
+        handleButtonClick() {
           this.list.push({
             name: this.inputValue,
-            stateBg: false
-          })
+            state: false
+          })  
           this.inputValue = ''
         },
         handleLiClick(key) {
-          console.log(key, 'key')
-          this.list.map((item, index) => {
-            item.stateBg = key === index ? true : false
-          })
+           this.list.forEach((item, index) => {
+            item.state = key === index ? true: false
+           })
         }
       },
 
     })
+
+
 
 
 

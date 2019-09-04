@@ -2,6 +2,7 @@
 # vue脚手架： vue-cli  3.x
 
 1. npm install -g @vue/cli
+
 2. vue --version
 3. 创建： vue create 项目名字   eg: vue-demo-project
   ##  回车 下一个  空格键选择
@@ -16,8 +17,17 @@
     Lint on save                     ：当前代码保存的时候自动检测代码格式
     In dedicated config files   把配置文件保存在一个文件中
 
+
+
 # vue:
    
+   计算属性： computed: {}
+   方法：     methods: {}
+   侦听器：   watch: {}
+
+   vue设置样式
+   
+   demo: todolist
   
 
 
