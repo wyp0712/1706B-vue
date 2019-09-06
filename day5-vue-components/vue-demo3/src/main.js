@@ -1,15 +1,17 @@
-// 入口文件
 import Vue from 'vue'
 import App from './App.vue'
-
-import './assets/style/reset.scss'
+import router from './router'
+import store from './store'
 import axios from 'axios'
-// console.log(axios)
+import MockData from '../mock/mock'
+console.log(MockData, 'MockData')
+
 Vue.prototype.$axios = axios
-// ajax
 
 Vue.config.productionTip = false
 
 new Vue({
+  router,
+  store,
   render: h => h(App)
 }).$mount('#app')
