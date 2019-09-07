@@ -3,16 +3,17 @@
     <div class="app-main">
       <div class="content">
         <router-view />
-      </div>
-    </div>
-
-    <FooterBar />
-      <!--  @closeMaskEvent @clickCheckMask 自定义事件，用来让子组件触发的事件 -->
+              <!--  @closeMaskEvent @clickCheckMask 自定义事件，用来让子组件触发的事件 -->
       <!-- <DialogComponent v-show="isShowMask" @closeMaskEvent="closeMaskFn" @clickCheckMask="parentFn" :checkList = "checkList"/> -->
       <!-- 渲染子组件传递过来的数据 v-show判断状态，只渲染选中的数据 -->
       <!-- <h1 v-show="item.state" v-for="(item, index) in childMaskList" :key="index"> {{item.title}}</h1> -->
       <!-- 调用蒙层按钮 -->
       <!-- <button @click="showMask">点击出蒙层</button> -->
+      </div>
+    </div>
+
+    <FooterBar />
+
   </div>
 </template>
 <script>
@@ -47,6 +48,7 @@ export default {
   },
   components: {
     FooterBar
+    // DialogComponent
   },
   created () {
     // 调用函数
