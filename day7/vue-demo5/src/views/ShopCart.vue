@@ -3,7 +3,7 @@
     <HeaderBar />
     购物车
     <hr>
-    <CartComponent :goodsItem="goodsItem"/>
+    <CartComponent />
     <div v-for="(item,index) in goodsItem" :key="index">{{item.nm}}</div>
     <hr>
   </div>

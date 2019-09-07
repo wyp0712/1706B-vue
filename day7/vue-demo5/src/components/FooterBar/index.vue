@@ -13,9 +13,9 @@
       </router-link>
     </ul>
      <ul>
-      <router-link @click="broadCast" to="/shopcart">
+      <router-link to="/shopcart">
         <li class="iconfont">&#xe621;</li>
-        <li>购物车{{goodsList.length}}</li>
+        <li class="cart-li">购物车 <span class="cart-tip">{{goodsList.length}}</span></li>
       </router-link>
     </ul>
      <ul>
@@ -35,23 +35,18 @@ export default {
     }
   },
   watch: {
-    goodsList () {
-      this.broadCast()
-    }
   },
   created () {
-    // console.log(this.goodsList, 'footer-------------bar')
-    this.getBusData()
-    this.broadCast()
+    this.getCartList()
+    if (window.localStorage.cart) {
+     this.goodsList = JSON.parse(window.localStorage.getItem('cart'))
+    }
   },
   methods: {
-    getBusData () {
-      EventBus.$on('shopCart', data => {
-        this.goodsList.push(data)
+    getCartList () {
+      EventBus.$on('shopCart', res => {
+        this.goodsList = res
       })
-    },
-    broadCast () {
-      EventBus.$emit('footerBroadCast', this.goodsList)
     }
   }
 }
@@ -67,6 +62,23 @@ export default {
       flex:1;
       text-align: center;
       line-height: .4rem;
+      .cart-li {
+        position: relative;
+        .cart-tip {
+          position: absolute;
+          right: 0.4rem;
+          top: -0.4rem;
+          text-align: center;
+          line-height:.4rem; 
+          background: red;
+          display: inline-block;
+          width: .4rem;
+          height: .4rem;
+          border-radius: 50%;
+          color:#fff;
+          font-size: .12rem;
+        }
+      }
     }
   }
 </style>

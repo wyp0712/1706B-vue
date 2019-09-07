@@ -1,34 +1,33 @@
 <template>
   <div class="cart-list">
-      {{msg}}
+    <div v-for="(item,index) in msg" :key="index">{{item.nm}}</div>
   </div>
 </template>
 <script>
 import EventBus from '../../EventBus/bus'
 export default {
-  props: ['goodsItem'],
+  // props: ['goodsItem'],
   data () {
     return {
       msg: []
     }
   },
   watch: {
-    msg () {
-      this.msg = this.goodsItem
-    }
   },
   created () {
-    console.log(this.goodsItem, 'this.goodsItem-------cart')
-    this.msg = this.goodsItem
-    this.getData()
+    if (window.localStorage.cart) {
+      this.msg = JSON.parse(window.localStorage.getItem('cart'))
+    }
   },
   methods: {
     getData () {
-      EventBus.$on('footerBroadCast', (list) => {
-        console.log(list, 'cart组件')
-        this.msg = list
-      })
     }
   }
 }
 </script>
+<style lang="scss" scoped>
+  .cart-list {
+    width: 100%;
+    height: 200px;
+  }
+</style>

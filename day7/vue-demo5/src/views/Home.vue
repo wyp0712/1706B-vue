@@ -12,10 +12,12 @@
   <nav class="tab-nav">
     我是input导航组件
   </nav>
+
   <div class="movie-content">
     <!-- 动态组件 -->
-    <component :childMsgMovie="childMsgMovie" :is="componentId"></component>
-   componentId: {{componentId}}
+    <keep-alive>
+      <component :childMsgMovie="childMsgMovie" :is="componentId"></component>
+    </keep-alive>
   </div>
   </div>
 </template>
@@ -80,6 +82,7 @@ export default {
       })
     },
     bindEvent (item = 'MovieLeft', index = 0) {
+      // 切换组件名字
       this.currentComponent = item.name
       this.tabs[this.tabIndex].state = false
       item.state = true
