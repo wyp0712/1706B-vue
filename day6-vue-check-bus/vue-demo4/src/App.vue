@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <HeaderBar />
-
     <div class="app-main">
       <div class="content">
         <router-view />
@@ -21,7 +19,7 @@
 // 父子传值
 // import DialogComponent from './components/Dialog/index.vue'
 import FooterBar from './components/FooterBar/FooterBar'
-import HeaderBar from './components/HeaderBar/headerBar'
+// import HeaderBar from './components/HeaderBar/headerBar'
 export default {
   data () {
     return {
@@ -48,7 +46,6 @@ export default {
     }
   },
   components: {
-    HeaderBar,
     FooterBar
   },
   created () {
