@@ -23,10 +23,10 @@
 
 <script>
 
-// @ is an alias to /src
+// @ is an alias to /src  @ === /src
 // import HelloWorld from '@/components/HelloWorld.vue'
-import MovieLeft from '../components/MovieLeft/index'
-import MovieRight from '../components/MovieRight/index'
+import MovieLeft from '@/components/MovieLeft/index'
+import MovieRight from '@/components/MovieRight/index'
 export default {
   name: 'home',
   data () {
