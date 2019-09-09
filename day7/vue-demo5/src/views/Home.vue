@@ -1,24 +1,23 @@
 <template>
   <div class="home">
-    HOME
+    <div class="nav">
+      <span
+      @click="bindEvent(item, index)"
+      :class="{active: item.state}"
+      v-for="(item, index) in tabs"
+      :key="index">{{item.name}}</span>
+    </div>
 
-  <div class="nav">
-    <span
-    @click="bindEvent(item, index)"
-    :class="{active: item.state}"
-    v-for="(item, index) in tabs"
-    :key="index">{{item.name}}</span>
-  </div>
-  <nav class="tab-nav">
-    我是input导航组件
-  </nav>
+    <nav class="tab-nav">
+      我是input导航组件
+    </nav>
 
-  <div class="movie-content">
-    <!-- 动态组件 -->
-    <keep-alive>
-      <component :childMsgMovie="childMsgMovie" :is="componentId"></component>
-    </keep-alive>
-  </div>
+    <div class="movie-content">
+      <!-- 动态组件 -->
+      <keep-alive>
+        <component :childMsgMovie="childMsgMovie" :is="componentId"></component>
+      </keep-alive>
+    </div>
   </div>
 </template>
 
@@ -74,7 +73,6 @@ export default {
   methods: {
     getData () {
       this.$axios.get('/getMovieList').then(res => {
-        // console.log(res.data.list.movieList, 'rs')
         this.movieList = res.data.list.movieList
         this.childMsgMovie = res.data.list.movieList.filter(item => {
           return item.globalReleased

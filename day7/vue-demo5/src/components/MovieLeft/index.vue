@@ -12,7 +12,8 @@ export default {
   data () {
     return {
       leftArr: [],
-      list: []
+      list: [],
+      num: 0
     }
   },
   created () {
@@ -35,6 +36,10 @@ export default {
       this.list.push(item)
       EventBus.$emit('shopCart', this.list)
       window.localStorage.setItem('cart', JSON.stringify(this.list))
+
+      this.$router.push({
+        path: `/detail/${item.id}`
+      })
     }
   }
 }

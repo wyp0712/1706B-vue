@@ -6,7 +6,6 @@
           <router-view/>
        </div>
     </main>
-
     <FooterBar />
   </div>
 </template>

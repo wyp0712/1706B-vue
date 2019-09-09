@@ -9,6 +9,11 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '*',
+      name: '404',
+      component: () => import('@/components/404NoFound/index.vue')
+    },
+    {
       path: '/',
       name: 'home',
       component: Home
@@ -35,6 +40,11 @@ export default new Router({
       path: '/PersonalCenter',
       name: 'PersonalCenter',
       component: () => import('../views/PersonalCenter.vue')
+    },
+    {
+      path: '/detail/:id',
+      name: 'detail',
+      component: () => import('../components/Detail/index.vue')
     }
   ]
 })

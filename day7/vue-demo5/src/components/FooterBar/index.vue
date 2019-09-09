@@ -39,7 +39,7 @@ export default {
   created () {
     this.getCartList()
     if (window.localStorage.cart) {
-     this.goodsList = JSON.parse(window.localStorage.getItem('cart'))
+      this.goodsList = JSON.parse(window.localStorage.getItem('cart'))
     }
   },
   methods: {
@@ -62,6 +62,14 @@ export default {
       flex:1;
       text-align: center;
       line-height: .4rem;
+      //   padding: 30px;
+        a {
+          font-weight: bold;
+          color: #2c3e50;
+          &.router-link-exact-active {
+            color: #42b983;
+          }
+        }
       .cart-li {
         position: relative;
         .cart-tip {
@@ -69,7 +77,7 @@ export default {
           right: 0.4rem;
           top: -0.4rem;
           text-align: center;
-          line-height:.4rem; 
+          line-height:.4rem;
           background: red;
           display: inline-block;
           width: .4rem;
