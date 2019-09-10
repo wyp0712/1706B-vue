@@ -7,8 +7,6 @@
          <span>{{item.skuMobileTitle}}</span>
        </li>
      </ul>
-
-     <FooterBar />
   </div>
 </template>
 

@@ -12,7 +12,7 @@ module.exports = {
         })
       })
 
-      // 详情页面接口，
+      // 详情页面接口
       app.get('/api/detail', (req, res) => {
         let { id } = req.query
         res.json({

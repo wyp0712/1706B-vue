@@ -1,11 +1,18 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div class="main">
+      <router-view/>
+    </div>
+    <FooterBar />
   </div>
 </template>
 
 <script>
+import FooterBar from './components/FooterBar/index'
 export default {
+  components: {
+    FooterBar
+  }
 }
 </script>
 
@@ -15,22 +22,33 @@ export default {
   margin: 0;
   padding: 0;
 }
+html,body {
+  width: 100%;
+  height: 100%;
+}
+html {
+  font-size: calc(100 / 750 * 100vw);
+}
 #app {
+  width: 100%;
+  height: 100%;
   list-style: none;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  // text-align: center;
   color: #2c3e50;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
 }
-// #nav {
-//   padding: 30px;
-//   a {
-//     font-weight: bold;
-//     color: #2c3e50;
-//     &.router-link-exact-active {
-//       color: #42b983;
-//     }
-//   }
-// }
+.main {
+  width: 100%;
+  flex:1;
+  overflow: auto;
+}
+.footer {
+  width: 100%;
+  height: .8rem;
+  background: #ccc;
+}
 </style>

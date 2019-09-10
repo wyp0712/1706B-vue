@@ -1,29 +1,36 @@
 # vue-demo8
 
-## Project setup
-```
-npm install
-```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+# 跳转详情页：
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Run your tests
-```
-npm run test
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
+router.js
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+ export default new Router([
+   {
+     path: '/detail/:id'
+     name: 'detail',
+     component: () => import()
+   }
+ ])
+
+this.$router.push({
+  path: '/detail/${id}',
+})
+
+
+# 详情页面：
+
+1. 进入页面获取传过来的id
+  
+  this.$route.params
+重新请求数据
+
+this.$axios('/api/detail', { 
+  params: {
+    id: id
+  }
+}).then(res => {
+  console.log(res)
+})
