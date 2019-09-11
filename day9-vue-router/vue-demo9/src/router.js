@@ -9,17 +9,38 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: '*',
+      component: () => import('./components/404NoFound/index.vue')
+    },
+    {
       path: '/',
       name: 'home',
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/personal',
+      name: 'personal',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      component: () => import(/* webpackChunkName: "about" */ './views/Personal.vue')
+    },
+    {
+      path: '/classify',
+      name: 'classify',
+      component: () => import('./views/Classify.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: () => import('./views/Cart.vue'),
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/detail/:id',
+      name: 'detail',
+      component: () => import('./components/Detail/index.vue')
     }
   ]
 })
