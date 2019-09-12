@@ -3,6 +3,7 @@
      <h1 v-if="detailMsg.length"> 
         {{detailMsg[0].skuName}}
         <img :src="detailMsg[0].images" alt="">
+        <span>添加到购物车</span>
      </h1>
 
   </div>

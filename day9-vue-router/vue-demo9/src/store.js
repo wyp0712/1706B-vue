@@ -1,16 +1,52 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
+    state: {
+        cartList: []
+    },
+    mutations: {
+      getAjaxData(state, list) {
+        console.log(list, 'list---------------------1')
+        state.cartList = list;
+      },
+      decrease(state, cartId) {
+        console.log(cartId, 'cartList-----decr=mutaion')
+        let arr = state.cartList.filter(item => {
+          // return item.skuId == cartId
+          if (item.skuId == cartId) {
+            item.count++
+            item.isCart = true
+            return item
+          }
+        })
+        console.log(arr[0], 'arr----------mutain')
+      },
+      increment (state, cartId) {
 
-  },
-  mutations: {
+      }
+    },
+    actions: {
+      getAjaxData({commit}, list) {
+        axios('/api/list').then(res => {
+          let cartData = []
+          cartData = res.data.list.data.skuInfo
+          cartData.forEach(item => {
+            item.count = 0
+            item.isCart = false
+          })
+          // console.log(cartData, 'cart-------data')
+          commit('getAjaxData', cartData)
+        })
+      },
+      decrease({commit}, cartId) {
+        commit('decrease', cartId)
+      },
+      increment () {
 
-  },
-  actions: {
-
-  }
+      }
+    }
 })

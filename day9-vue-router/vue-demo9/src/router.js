@@ -15,7 +15,8 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: Home,
+      // meta: { requiresAuth: true }
     },
     {
       path: '/personal',
@@ -41,6 +42,16 @@ export default new Router({
       path: '/detail/:id',
       name: 'detail',
       component: () => import('./components/Detail/index.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('./components/Login/index.vue')
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('./components/Register/index.vue')
     }
   ]
 })
