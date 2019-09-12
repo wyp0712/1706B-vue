@@ -1,20 +1,20 @@
 <template>
   <div id="app">
-    <!-- header-bar -->
-    <div class="main">
-      <div class="content">
-        <router-view/>
-      </div>
-    </div>
-    <!-- footer-bar -->
+
+    <MainContentComponent>
+      <router-view></router-view>
+    </MainContentComponent>
+    
     <FooterBar />
   </div>
 </template>
 <script>
 import FooterBar from './components/FooterBar/index'
+import MainContentComponent from './components/MainContent/index'
 export default {
   components: {
-    FooterBar
+    FooterBar,
+    MainContentComponent
   }
 }
 </script>

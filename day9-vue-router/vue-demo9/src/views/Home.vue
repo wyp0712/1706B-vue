@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <h1> <input type="text" v-model="inputVal"> </h1>
-
+    <h1 class="inputBox" ref="inputBox"> <input type="text" v-model="inputVal"> </h1>
     <template v-if="!inputVal">
       <ul @click="bindDetailEvent(item)" v-for="(item, index) in listArr" :key="index">
         <li>
@@ -40,11 +39,14 @@ export default {
   },
   created() {
     this.$store.dispatch('getAjaxData')
-    this.getData()
+    // this.getData()
   },
   watch: {
     inputVal() {
       this.searchData()
+    },
+    storeList(v) {
+      this.listArr = v
     }
   },
   methods: {
@@ -52,7 +54,7 @@ export default {
       this.searchArr = this.listArr.filter(item => {
         return item.skuName.includes(this.inputVal)
       })
-      console.log(this.searchArr, 'this.searchArr')
+      // console.log(this.searchArr, 'this.searchArr')
     },
     bindDetailEvent(item) {
      // 跳转详情页面
@@ -62,7 +64,7 @@ export default {
       this.$store.dispatch('decrease', item.skuId)
     },
     getData() {
-      this.listArr = this.$store.state.cartList
+      // this.listArr = this.$store.state.cartList
       // this.$axios('/api/list').then(res => {
         // this.listArr = res.data.list.data.skuInfo
         // this.listArr.forEach(item => {
@@ -86,7 +88,10 @@ export default {
       width: 100%;
       input {
         width: 100%;
-        height: 60px;
+        height: 30px;
+        border-radius: 10px;
+        outline: none;
+        padding-left: 5%;
         border:1px solid black;
       }
     }

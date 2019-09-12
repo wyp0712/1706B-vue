@@ -10,11 +10,9 @@ export default new Vuex.Store({
     },
     mutations: {
       getAjaxData(state, list) {
-        console.log(list, 'list---------------------1')
         state.cartList = list;
       },
       decrease(state, cartId) {
-        console.log(cartId, 'cartList-----decr=mutaion')
         let arr = state.cartList.filter(item => {
           // return item.skuId == cartId
           if (item.skuId == cartId) {
@@ -23,7 +21,6 @@ export default new Vuex.Store({
             return item
           }
         })
-        console.log(arr[0], 'arr----------mutain')
       },
       increment (state, cartId) {
 

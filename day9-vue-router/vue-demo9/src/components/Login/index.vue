@@ -17,7 +17,6 @@ export default {
     }
   },
   created() {
-    // console.log(this.$route.query.redirect, 'query=========1')
   },
   methods: {
     btnEvent() {
@@ -28,11 +27,8 @@ export default {
           pwd: this.pwdVal
         }
       }).then(res => {
-        console.log(res, 'res')
-        // if (res.data.msg === 'success') {}
         if (res.data.msg === 'success') {
           window.localStorage.record = true
-
           alert('登陆成功')
           this.$router.push({
             path: this.$route.query.redirect || '/'
