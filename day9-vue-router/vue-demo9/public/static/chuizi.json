@@ -1,6 +1,7 @@
 {
   "code": 0,
   "testImg":"https://wyp0712.github.io/git-page-test/外卖01_商品页.jpg",
+  "imgsrc": "./1.webp",
   "data": {
     "skuInfo": [
       {

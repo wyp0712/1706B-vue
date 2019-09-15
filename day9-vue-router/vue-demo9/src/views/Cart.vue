@@ -2,7 +2,7 @@
   <div class="cart">
     <hr />
     <h1>购物车</h1>
-
+    <img :src ="imgSrc" alt="">
     <CartTestComponent>
       <div class="box" slot="one">中秋节</div>
       <div class="box" slot="two">国庆节</div>
@@ -17,41 +17,44 @@
   </div>
 </template>
 <script>
-import CartTestComponent from "../components/testCart/index";
-import MaskComponent from "../components/Dialog/index";
+import CartTestComponent from "../components/testCart/index"
+import MaskComponent from "../components/Dialog/index"
+// import testImg from '../assets/logo.png'
 export default {
   data() {
     return {
       testMsg: "<h2>国庆节大阅兵</h2>",
-      isDialog: false
-    };
+      isDialog: false,
+      // testImg: testImg,
+      imgSrc: ''
+    }
   },
   components: {
     CartTestComponent,
-    MaskComponent
+    MaskComponent,
+    
   },
   computed: {
     list() {
-      return this.$store.state.cartList;
+      return this.$store.state.cartList
     }
   },
   created() {
-    console.log(this.list, "list");
+    this.$axios.get('/static/chuizi.json').then(res => {
+      this.imgSrc = '/static/' + res.data.imgsrc
+    })
     var arr = this.list.filter(item => {
       return item.isCart;
-    });
-    console.log(arr, "arr");
-    // console.log(this.$store.state.cartList)
+    })
   },
   mounted() {},
   watch: {},
   methods: {
     sureBtn() {
-      console.log(2);
       this.isDialog = false;
     },
     closeBtn() {
-      console.log("closeBtn");
+      console.log("closeBtn")
     },
     addEvent() {},
     removeEvent() {}
@@ -59,7 +62,19 @@ export default {
 };
 </script>
 <style lang="scss">
+img {
+  width: 200px;
+  height: 200px;  
+}
 .cart {
   padding: 40px;
+}
+.testImg {
+  width: 200px;
+  height: 200px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }
 </style>
