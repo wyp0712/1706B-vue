@@ -318,6 +318,7 @@ npm(cnpm) install vue-router --save
     {path:"",meta:{isLogin:true}}
     isLogin  为自定义参数
     路由表自定义参数功能， 可以结合导航守卫做权限验证功能
+
 7.keep-alive
 
 8.导航守卫

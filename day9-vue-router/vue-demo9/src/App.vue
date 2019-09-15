@@ -4,7 +4,7 @@
     <MainContentComponent>
       <router-view></router-view>
     </MainContentComponent>
-    
+
     <FooterBar />
   </div>
 </template>
@@ -20,7 +20,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 *{
   margin: 0;
   padding: 0;

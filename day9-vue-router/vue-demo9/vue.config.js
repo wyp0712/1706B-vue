@@ -1,4 +1,4 @@
-const listData = require('./mock/chuizi.json')
+const listData = require('./public/static/chuizi.json')
 const loginData = require('./mock/loginData.json')
 const fs = require('fs')
 
@@ -24,7 +24,6 @@ module.exports = {
       // 查询登陆接口 post请求方式
       app.get('/api/login', (req, res) => {
         const { user, pwd } = req.query
-        console.log(user, pwd, 'pwd----------1')
         const flag = loginData.some(item => {
           return item.user == user && item.pwd == pwd
         })

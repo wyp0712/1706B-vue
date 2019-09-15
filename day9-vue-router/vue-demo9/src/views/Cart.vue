@@ -1,19 +1,11 @@
 <template>
   <div class="cart">
     <hr />
-    <h1>购物车</h1>
-    <img :src ="imgSrc" alt="">
-    <CartTestComponent>
-      <div class="box" slot="one">中秋节</div>
-      <div class="box" slot="two">国庆节</div>
-    </CartTestComponent>
 
-    <MaskComponent v-show="isDialog">
-      <h3>庆祝国庆节</h3>
-      <div class="content">国庆节去哪玩</div>
-      <button @click="sureBtn">确定</button>
-      <button @click="closeBtn">取消</button>
-    </MaskComponent>
+    <div v-for="(item, index) in list" :key="index">
+      {{item.count}} {{item.name}}
+    </div>  
+
   </div>
 </template>
 <script>

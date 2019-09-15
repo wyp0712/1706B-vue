@@ -38,15 +38,15 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('getAjaxData')
-    // this.getData()
+    // this.$store.dispatch('getAjaxData')
+    this.getData()
   },
   watch: {
     inputVal() {
       this.searchData()
     },
     storeList(v) {
-      this.listArr = v
+      // this.listArr = v
     }
   },
   methods: {
@@ -61,19 +61,19 @@ export default {
     //  this.$router.push({
     //    path: `/detail/${item.skuId}`
     //  })
-      this.$store.dispatch('decrease', item.skuId)
+      this.$store.commit('addFn', item)
     },
     getData() {
       // this.listArr = this.$store.state.cartList
-      // this.$axios('/api/list').then(res => {
-        // this.listArr = res.data.list.data.skuInfo
-        // this.listArr.forEach(item => {
-        //   item.count = 0
-        //   item.isCart = false
-        // })
+      this.$axios('/api/list').then(res => {
+        this.listArr = res.data.list.data.skuInfo
+        this.listArr.forEach(item => {
+          item.count = 0 // 当前购物车数量
+          item.isCart = false // 当前是否加入购物车的状态
+        })
 
         // this.$store.dispatch('getAjaxData', this.listArr)
-      // })
+      })
     }
   },
 }

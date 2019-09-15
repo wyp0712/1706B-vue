@@ -6,44 +6,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        cartList: []
+      cartList: []
     },
     mutations: {
-      getAjaxData(state, list) {
-        state.cartList = list;
+      addFn (state, list) {
+         console.log(list, 'strot=====list')
+         list.count ++
+         state.cartList.push(list)
       },
-      decrease(state, cartId) {
-        let arr = state.cartList.filter(item => {
-          // return item.skuId == cartId
-          if (item.skuId == cartId) {
-            item.count++
-            item.isCart = true
-            return item
-          }
-        })
-      },
-      increment (state, cartId) {
+      removeFn () {
 
       }
     },
     actions: {
-      getAjaxData({commit}, list) {
-        axios('/api/list').then(res => {
-          let cartData = []
-          cartData = res.data.list.data.skuInfo
-          cartData.forEach(item => {
-            item.count = 0
-            item.isCart = false
-          })
-          // console.log(cartData, 'cart-------data')
-          commit('getAjaxData', cartData)
-        })
-      },
-      decrease({commit}, cartId) {
-        commit('decrease', cartId)
-      },
-      increment () {
-
-      }
     }
 })
