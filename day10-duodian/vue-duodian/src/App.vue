@@ -5,13 +5,18 @@
       <router-link to="/about">About</router-link> -->
     <!-- </div> -->
     <!-- <router-view/> -->
-    
+    <HomeComponent />
+    <hr>
+    <CartComponent />
   </div>
 </template>
 <script>
+import HomeComponent from './pages/Home'
+import CartComponent from './pages/Cart'
 export default {
-  components: {
-
+  components: { 
+    HomeComponent,
+    CartComponent
   }
 }
 </script>
