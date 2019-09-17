@@ -6,6 +6,10 @@
   </div>
 </template>
 <style lang="scss">
+.router-link-exact-active{
+  background: lightblue;
+  text-decoration: none;
+}
 .attention-bar {
   width: 100%;
   height: 45px;

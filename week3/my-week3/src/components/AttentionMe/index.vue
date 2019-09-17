@@ -40,9 +40,9 @@ export default {
       this.list = result.data
     },
     AddAttentionEvent(item, index) {
-      this.list[index].state = !this.list[index].state
-      this.$store.commit('attentFn', {item, index})
+      item.state = !item.state
       localStorage.setItem('attentionList', JSON.stringify(this.list))
+      this.$store.commit('attentFn', {item, index})
     },
     removeAttentionEvent(item, index) {
       // this.list[index].state = !this.list[index].state

@@ -34,10 +34,6 @@ export default new Router({
       component: () => import('./views/Fans.vue'),
       children: [
         {
-          path: '',
-          redirect: 'attentionMe'
-        },
-        {
           path: 'attentionMe',
           component: () => import('./components/AttentionMe/index.vue')
         },

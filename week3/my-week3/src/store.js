@@ -13,25 +13,25 @@ const store = new Vuex.Store({
         const goods = state.attentionList.find(v => v.name == item.name)
         if (!goods) {
           state.attentionList.push(item)
+          localStorage.setItem('collect',JSON.stringify(state.attentionList))
         }
       } else {
         state.attentionList.splice(index, 1)
+        localStorage.setItem('collect',JSON.stringify(state.attentionList))
       }
     },
     removeAttentionFn(state, {item, index}) {
-      // item.state = !item.state
       if (localStorage.attentionList) {
         const arr = JSON.parse(localStorage.getItem('attentionList'))
-        // const goods = arr.find(v => v.name === item.name)
         arr.forEach(v => {
           if (v.name === item.name) {
-            console.log(v.name, 'v.name')
             v.state = true
           }
         })
         localStorage.setItem('attentionList', JSON.stringify(arr))
       }
       state.attentionList.splice(index, 1)
+      localStorage.setItem('collect',JSON.stringify(state.attentionList))
     }
   },
   actions: {
@@ -39,8 +39,9 @@ const store = new Vuex.Store({
   }
 })
 
-store.subscribe((mutations,state)=>{
-  localStorage.setItem('collect',JSON.stringify(state.attentionList))
-})
+// store.subscribe((mutation, state)=>{
+//   console.log(mutation, 'mutaion')
+//   localStorage.setItem('collect',JSON.stringify(state.attentionList))
+// })
 
 export default store
