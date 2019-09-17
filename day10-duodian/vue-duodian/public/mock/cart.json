@@ -1,14 +1,17 @@
 [
   {
     "name": "小米9",
-    "count": 0
+    "count": 0,
+    "id": 0
   },
   {
     "name": "iphone11",
-    "count": 0
+    "count": 0,
+    "id": 1
   },
   {
     "name": "iphone12",
-    "count": 0
+    "count": 0,
+    "id": 2
   }
 ]

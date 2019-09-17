@@ -5,20 +5,34 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {  // 数据仓库 具有双向数据绑定的功能  data
-    cartData: []  
+    cartData: []
   },
   getters: { // vuex中计算属性
+
   },
   mutations: {  // 提交同步代码的地方
-    addFn(state, list) { // 第一个参数是仓库中的数据 第二个参数是接收组件传输过来的消息
-      list.count++
-      state.cartData.push(list)
-      state.cartData = [...new Set(state.cartData)]
+    toCart (state, item) {
+      let goods = state.cartData.find(v => v.name === item.name)
+      if (goods) {
+        goods.count+=1
+      } else {
+        state.cartData.push({
+          name: item.name,
+          count: 1
+        })
+      }
     },
-    removeFn(state, list) {
-      list.count--
-      state.cartData.push(list)
-      state.cartData = [...new Set(state.cartData)]
+    addCart(state, index) {
+      state.cartData[index].count ++
+    },
+    removeCart(state, index) {
+      if (state.cartData[index].count >=1) {
+        state.cartData[index].count --
+      } else {
+        if(window.confirm('确定从购物车移除商品吗？')){
+          state.cartData.splice(index,1)
+        }
+      }
     }
   },
   actions: { // 提交异步代码的地方

@@ -2,73 +2,77 @@
   <div class="home">
     <ul class="goods-item" v-for="(item, index) in list" :key="index">
       <li>
-        <span>{{item.name}}</span>
-        <span>{{item.count}}</span>
-        <button @click="addEvent(item)">+</button>
-        <button @click="removeEvent(item)">-</button>
+        <span class="goodsMsg">{{item.name}} ---->: {{item.count}}</span>
+        <span class="addBtn" @click="addEvent(item, index)">+</span>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
-  name: 'home',
-  data () {
+  name: "home",
+  data() {
     return {
-      list: [
-        {
-          name: "小米9",
-          count: 0
-        },
-        {
-          name: "苹果11",
-          count: 0
-        },
-        {
-          name: "苹果pro",
-          count: 0
-        }
-      ]
+      list: [],
+      storage: ""
     }
   },
+  computed: {
+  },
+  watch: {
+  },
+  created() {
+    this.getAjaxData();
+  },
   methods: {
-    addEvent(item) {
-      // 通过 commit 方法提交给vuex中mutaitons
-      this.$store.commit('addFn', item)
+    async getAjaxData() {
+      const result = await this.$axios.get('/api/list')
+      this.list = result.data
     },
-    removeEvent(item) {
-      this.$store.commit('removeFn', item)
+    addEvent(item, index) {       // 通过 commit 方法提交给vuex中mutaitons
+      this.$store.commit('toCart', item) 
     }
   }
 }
 </script>
 <style lang="scss">
-*{
+* {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-  .home {
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 10%;
-    ul {
-      width: 100%;
-      margin-bottom: 5px;
-      li {
-        width: 100%;
-        display: flex;
-        span {
-          flex:1;
-        }
-        button {
-          flex:1;
-          outline: none;
-          border:1px solid black;
-        }
+.home {
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10%;
+  ul {
+    width: 100%;
+    margin-bottom: 5px;
+    li {
+      width: 100%; 
+      line-height: 35px;
+      .goodsMsg {
+        display: inline-block;
+        width: 220px;
+        line-height: 35px;
+        border:1px solid black;
       }
     }
   }
+}
+.addBtn {
+  margin-top: 5px;
+  display: inline-block;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #000;
+  color:#fff;
+  text-align: center;
+  line-height: 35px;
+  font-size: 35px;
+}
 </style>

@@ -182,6 +182,9 @@ const config = {
     port: 8000,
     host: 'localhost',
     open: true,
+    before: function() {
+
+    }
   }
 }
 
