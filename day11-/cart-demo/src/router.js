@@ -13,6 +13,11 @@ export default new Router({
       redirect: '/home'
     },
     {
+      path: '/detail',
+      name: 'detail',
+      component: () => import('./components/Detail/index.vue')
+    },
+    {
       path: '/',
       name: 'navbar',
       component: () => import('./views/NavBar.vue'),
@@ -26,7 +31,12 @@ export default new Router({
           path: 'home',
           name: 'home',
           component: () => import(/* webpackChunkName: "about" */ './views/Home.vue')
-        }
+        },
+        {
+          path: 'vant',
+          name: 'vant',
+          component: () => import('./views/vantTest.vue')
+        },
       ]
     }
   ]

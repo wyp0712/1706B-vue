@@ -1,25 +1,62 @@
 <template>
   <div class="cart">
-     <dl class="cart-item" v-for="(item, index) in cartGoods" :key="index">
+     <!-- <dl class="cart-item" v-for="(item, index) in cartGoods" :key="index">
       <dt><img :src="item.image" alt=""></dt>
       <dd>{{item.label}} </dd>
       <dd class="remove-btn" @click="removeGoods(item, index)">-</dd>
       <dd class="inner">{{item.count}}</dd>
       <dd class="add-btn" @click="addGoods(item, index)">+</dd>
-     </dl>
+     </dl> -->
+      <van-card v-for="(item, index) in cartGoods" :key="index"
+          :num="item.count"
+          price="2.00"
+          desc="描述信息"  
+          :title="item.label"
+          :thumb="item.image"
+        >
+          <div slot="tags">
+            <van-tag plain type="danger">标签</van-tag>
+            <van-tag plain type="danger">标签</van-tag>
+          </div>
+          <div slot="footer">
+            <van-button size="mini" @click="addGoods(item, index)">+</van-button>
+            <van-button size="mini" @click="removeGoods(item, index)">-</van-button>
+          </div>
+      </van-card>
   </div>
 </template>
 
 <script>
-
+import { mapState } from 'vuex'
 export default {
   name: 'cart',
   data() {
     return {
-      arr: []
+      arr: [],
+      count: '',
+      list: {
+        a: 1
+      }
     }
   },
+  // Vue 不能检测到对象属性的添加或删除。
+  // 由于 Vue 会在初始化实例时对属性执行 getter/setter 转化过程，所以属性必须在 data 对象上存在才能让 Vue 转换它，这样才能让它是响应的。
+  watch: {
+    // cartCount(v) {
+    //   console.log(v, 'v')
+    // },
+    // cartCount: {
+    //   handler(newV, oldV) {
+    //     console.log(newV, 'v-----------------v') 
+    //   },
+    //   // deep: true,
+    //   // immediate: true
+    // }
+  },
   computed: {
+    cartCount() {
+      return this.$store.state.num
+    },
     cartGoods () {
       return this.$store.state.cartarr
     }
@@ -39,6 +76,9 @@ export default {
 }
 </script>
 <style lang="scss">
+.van-card {
+  width: 100%;
+}
 .cart {
   width: 95%;
   padding: 2.5%;

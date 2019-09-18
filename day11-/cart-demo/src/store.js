@@ -5,10 +5,15 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    cartarr: JSON.parse(localStorage.getItem('goodsItem')) || []  
+    cartarr: JSON.parse(localStorage.getItem('goodsItem')) || [],
+    num: 0 
   },
   mutations: {
+    changeNum(state, count) {
+      state.num = ++count
+    },
     toCart(state, item) {
+      console.log(item, 'item-------1')
      let goods = state.cartarr.find(v => v.label === item.label)
      if (goods) {
        goods.count += 1
@@ -19,6 +24,7 @@ const store = new Vuex.Store({
         image: item.image, 
       })
      }
+     console.log(state.cartarr, 'cartarr')
     },
     addGoods(state, index) {
       state.cartarr[index].count++
