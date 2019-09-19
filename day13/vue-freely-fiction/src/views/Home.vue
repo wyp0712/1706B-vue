@@ -66,8 +66,8 @@ export default {
       this.fictionTitle[this.tabIndex].state = false;
       item.state = true;
       this.tabIndex = index;
+      // 0 1 2 3
       this.getBookData(index);
-      console.log(this.bookList, "bookList");
     }
   },
   components: {

@@ -9,8 +9,9 @@ for(let i = 0; i < 20; i++) {
   homeList.push({
     title: "首页 ---" + Mock.Random.ctitle(),
     time: Mock.Random.time(),
+    id: Mock.Random.id(),
     detail: Mock.Random.csentence(10),
-    image: Mock.Random.image('200x100', `${Mock.Random.color()}`, '#FFF', `${Mock.Random.csentence(2)}`)
+    image: Mock.Random.image('200x100', `${Mock.Random.color()}`, '#FFF', `${Mock.Random.csentence(2)}`),
   })
   classify.push({
     title: "分类 ---" + Mock.Random.ctitle(),
@@ -31,12 +32,14 @@ for(let i = 0; i < 20; i++) {
     image: Mock.Random.image('200x100', `${Mock.Random.color()}`, '#FFF', `${Mock.Random.csentence(2)}`)
   })
 }
+
 const bookList = {
   0: homeList,
   1: classify,
   2: rank,
   3: bookRack
 }
+
 module.exports = {
   bookList
 }

@@ -22,9 +22,22 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     },
     {
-      path: '/detail/:id',
+      path: '/detail',
       name: 'detail',
       component: () => import('./components/BookDetail/index.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('./components/Login/index.vue')
+    },
+    {
+      path: '/bookrack',
+      name: 'bookrack',
+      component: () => import('./components/Bookrack/index.vue'),
+      meta: {
+        requireAuth: true
+      }
     }
   ]
 })
