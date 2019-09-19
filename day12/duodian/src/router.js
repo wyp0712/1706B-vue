@@ -9,8 +9,17 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     {
+      path: "*",
+      redirect: "/"
+    },
+    {
       path: '/',
-      redirect: '/login'
+      redirect: '/home'
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('./components/Register/index.vue')
     },
     {
       path: '/login',

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>登陆页面</h1>
      账号： <input type="text" v-model="loginObj.user"><br>
      密码 <input type="text" v-model="loginObj.pwd"><br>
 
@@ -23,11 +24,24 @@ export default {
         pwd: this.loginObj.pwd
       }
       }).then(res => {
-        console.log(res.data, 'login')
-        this.$store.commit('setToken', res.data.token)
-        this.$router.push({
-          path: '/home'
-        })
+        if (res.data.errno === 0) {
+          this.$toast.success(`${res.data.msg}`);
+          // 如果登陆成功就把token存在vuex中
+          this.$store.commit('setToken', res.data.token)
+          setTimeout(() => {
+            this.$router.push({
+              path: this.$route.query.redirect || '/home'
+            })
+          }, 3000)
+        } else if (res.data.errno === -1) {
+          this.$toast.success(`${res.data.msg}`);
+            setTimeout(() => {
+              this.$router.push({
+                path: '/register'
+              })
+            }, 3000)
+
+        }
       })
     }
   },
