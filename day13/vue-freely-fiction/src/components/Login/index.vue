@@ -39,3 +39,8 @@ export default {
   },
 }
 </script>
+<style lang="scss">
+  input {
+    border:1px solid black;
+  }
+</style>
