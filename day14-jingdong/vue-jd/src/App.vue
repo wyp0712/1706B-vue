@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header></header>
-    <main>
+    <main class="main">
       <router-view />
     </main>
 
@@ -54,6 +54,7 @@ main {
   width: 100%;
   flex:1;
   overflow: auto;
+  scroll-behavior: smooth;
 }
 .footer {
     width: 100%;

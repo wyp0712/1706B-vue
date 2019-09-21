@@ -8,10 +8,10 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+
     {
       path: '/',
-      name: 'home',
-      component: Home
+      redirect: '/login',
     },
     {
       path: '/about',
@@ -31,7 +31,17 @@ export default new Router({
     {
       path: '/detail/:id',
       name: 'detail',
-      component: () => import(/* webpackChunkName: "about" */ './views/Detail.vue')
+      component: () => import(/* webpackChunkName: "about" */ './components/Detail/index.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import(/* webpackChunkName: "about" */ './components/Login/index.vue')
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: () => import(/* webpackChunkName: "about" */ './views/Home.vue')
     }
   ]
 })

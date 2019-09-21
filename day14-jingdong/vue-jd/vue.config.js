@@ -1,51 +1,62 @@
 
-const { bookList } = require('./public/mock/index')
+const userList = require('./public/mock/mouth')
+
 module.exports = {
   lintOnSave: false,
   devServer: {
-    before: function (app, server) {
-
-      // 列表数据
-      app.get('/api/list', (req, res) => {
-        res.json(bookList)
-      })
-
-      const UserData = [{
-        user: 'devin',
-        pwd: "123"
-      }]
-      // 登陆 
-      const tokenkey = 'bawei'
+    before: function(app, server) {
+        
+      const userData = [
+        {
+          user: '123',
+          pwd: '123'
+        }
+      ]
+      // 
+      const tokenKey = 'bawei'
       app.get('/api/login', (req, res) => {
-        const { user, pwd } = req.query
-        let loginFlag = UserData.some(item => item.user === user && item.pwd === pwd)
-        if (loginFlag) {
+         const { user, pwd } = req.query;
+         const loginFlag = userData.some(item =>  item.user === user)
+         if (loginFlag) {
+           res.json({
+             msg: 'success',
+             token: `${tokenKey}_${user}_${Date.now()}`,  // 
+             errno: 0
+           })
+         } else {
           res.json({
-            token: `${tokenkey}_${user}_${Date.now()}`,
-            msg: 'success',
-            errno: 0
-          })
-        } else {
-          res.json({
+            msg: 'fail',
             errno: -1
           })
-        }
+         }
+      })
+     
+      // 列表接口
+      app.get('/api/list', (req, res) => {
+        res.json(userList)
+      })
+      
+      // 轮播图接口
+      app.get('/api/list', (req, res) => {
+        res.json([
+          {
+            image: 'https://resource.smartisan.com/resource/b28254e9f51cd6304ccca3519b68b6cf.png?x-oss-process=image/resize,w_750/format,webp'
+          },
+          {
+            image: 'https://resource.smartisan.com/resource/b28254e9f51cd6304ccca3519b68b6cf.png?x-oss-process=image/resize,w_750/format,webp'
+          },
+          {
+            image: 'https://resource.smartisan.com/resource/b28254e9f51cd6304ccca3519b68b6cf.png?x-oss-process=image/resize,w_750/format,webp'
+          }
+        ])
       })
 
-      // 详情接口
+      // 详情页面接口
       app.get('/api/detail', (req, res) => {
-        // dataID 当前数据的id ； goodsId 当前详情数据id
-        const { dataID, goodsID } = req.query;
-        const goodItem = bookList[dataID].filter(item => item.id === goodsID)
-        if (goodItem.length) {
-          res.json(goodItem)
-        } else {
-          res.json({
-            msg: '查不到数据',
-            errno: -1
-          })
-        }
-      })
+        const { id } = req.query;
+        const arr = userList.filter(item => item.id === id) 
+        res.json(arr)
+      })  
     }
   }
 }

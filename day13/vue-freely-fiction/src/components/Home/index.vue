@@ -13,7 +13,9 @@
 import SwiperComponent from '../Swiper/index'
 export default {
   props: {
-    bookList: Array
+    bookList: Array, // propTypes
+    require:true,
+    default: ['hello world']  // defaultProps
   },
   data() {
     return {
